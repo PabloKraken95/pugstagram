@@ -18,12 +18,18 @@
     let like = false;
     let bookmark = false;
 
-    function handleClick(){
+    function handleClick() {
         isModal = !isModal;
     }
     
-    function handleLike(){
-        let icon = document.getElementById("like-reaction");
+    function handleLike(event) {
+        let icon;
+        if(event.currentTarget.tagName === "FIGURE"){
+            icon = event.currentTarget.parentElement.parentElement.children[2].firstElementChild.firstElementChild;
+        } else {
+
+            icon = event.currentTarget;
+        }
         if(like === false) {
             if ( icon.className.match(/(?:^|\s)far(?!\S)/) ) {
                 icon.className = icon.className.replace( /(?:^|\s)far(?!\S)/g , 'fas' );
@@ -38,8 +44,8 @@
         like = !like;
     }
     
-    function handleBookmark(){
-        let icon = document.getElementById("bookmark-icon");
+    function handleBookmark(event) {
+        let icon = event.currentTarget;
         if(bookmark === false) {
             if ( icon.className.match(/(?:^|\s)far(?!\S)/) ) {
                 icon.className = icon.className.replace( /(?:^|\s)far(?!\S)/g , 'fas' );
